@@ -24,6 +24,9 @@ class DefaultController extends Controller
 
     public function listCategories(Request $request){
 
-        return $this->render('default/category.html.twig');
+        $client = new \Github\Client();
+        $repositories = $client->api('user')->repositories('symfony');
+
+        return $this->render('default/category.html.twig' , 'repositories'=>$repositories );
     }
 }
